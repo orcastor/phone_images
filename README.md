@@ -14,7 +14,10 @@
 ### 使用场景
 
 - 可以使用厂商和型号匹配到对应的机型图片
-- iPhone可以使用M开头的5位型号（`ModelNumber`）匹配到颜色（[到iPhone 14的映射表](https://github.com/orcastor/phone_images/blob/master/model_to_color.json)参考了[这里](https://github.com/pbakondy/ios-device-list/blob/b50e6818ae5d24c80bef0594a4c43da58f58ceb1/iphone.json)）
+- iPhone可以使用M开头的5位型号（`ModelNumber`）匹配到颜色（[model_to_color.json映射表](https://github.com/orcastor/phone_images/blob/master/model_to_color.json)）
+  - 参考资料一：[iPhone 15型号表](https://ek.ua/en/post/5188/122-how-not-to-make-a-mistake-iphone-article-numbers-and-their-decoding/)
+  - 参考资料二：[iPhone型号表](https://github.com/pbakondy/ios-device-list/blob/b50e6818ae5d24c80bef0594a4c43da58f58ceb1/iphone.json)
+  - 参考资料三：[苹果设备Model信息](https://www.theiphonewiki.com/wiki/Models)
 - iPhone可以规约到12种颜色
   - Black：Black、Midnight、Graphite、Jet Black、Matte Black、BlackSlate、Black Titanium
   - White：White、Starlight、WhiteSilver、White Titanium

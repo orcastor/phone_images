@@ -8,6 +8,8 @@ import (
 	_ "github.com/mattn/go-sqlite3"
 )
 
+// 需要用 go build --tags "fts5"
+
 // https://github.com/lmirosevic/GBDeviceInfo/blob/master/GBDeviceInfo/GBDeviceInfo_iOS.m
 func GetIOSProductName(ProductType string) string {
 	if a, ok := strings.CutPrefix(ProductType, "iPhone"); ok {
@@ -55,15 +57,8 @@ func GetAndroidProductName(Brand, Model string) string {
 	defer db.Close()
 
 	// 查询数据
-	rows, err := db.Query("SELECT model FROM models WHERE model LIKE ? COLLATE NOCASE ORDER BY LENGTH(model) DESC", fmt.Sprintf("%%%s%%%s%%", Brand, Model))
-	if err != nil {
-		fmt.Println(err)
-		return ""
-	}
-	defer rows.Close()
-
 	var ProductName string
-	err = rows.Scan(&ProductName)
+	err = db.QueryRow("SELECT model FROM models WHERE model LIKE ? COLLATE NOCASE ORDER BY LENGTH(model) DESC", fmt.Sprintf("%%%s%%%s%%", Brand, Model)).Scan(&ProductName)
 	if err != nil {
 		fmt.Println(err)
 		return ""

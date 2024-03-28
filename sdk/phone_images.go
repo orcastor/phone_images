@@ -49,6 +49,7 @@ func GetAndroidProductName(Brand, Model string) string {
 	// 连接SQLite数据库
 	db, err := sql.Open("sqlite3", "android.db")
 	if err != nil {
+		fmt.Println(err)
 		return ""
 	}
 	defer db.Close()
@@ -56,6 +57,7 @@ func GetAndroidProductName(Brand, Model string) string {
 	// 查询数据
 	rows, err := db.Query("SELECT model FROM models WHERE model LIKE ? COLLATE NOCASE ORDER BY LENGTH(model) DESC", fmt.Sprintf("%%%s%%%s%%", Brand, Model))
 	if err != nil {
+		fmt.Println(err)
 		return ""
 	}
 	defer rows.Close()
@@ -63,6 +65,7 @@ func GetAndroidProductName(Brand, Model string) string {
 	var ProductName string
 	err = rows.Scan(&ProductName)
 	if err != nil {
+		fmt.Println(err)
 		return ""
 	}
 

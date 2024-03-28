@@ -8,15 +8,15 @@
 
 ### 照片名称列表
 
-- [android](https://github.com/orcastor/phone_images/blob/master/android/android)
-- [ios](https://github.com/orcastor/phone_images/blob/master/ios/ios)
+- [android](android/android)
+- [ios](ios/ios)
 - （可能用不上，安卓可以用数据库查询，iOS直接拼出名字）
 
 ### 使用场景
 
 - 可以使用厂商和型号匹配到对应的机型图片
-- Android：[sqlite数据库android.db](https://github.com/orcastor/phone_images/blob/master/android.db)
-  - 表名models，字段名model，有FTS5版全文检索索引（注意是否支持，如不支持可修改[models2db.py](https://github.com/orcastor/phone_images/blob/master/models2db.py)自行生成）
+- Android：sqlite数据库[android.db](android.db)
+  - 表名models，字段名model，有FTS5版全文检索索引（注意是否支持，如不支持可修改[models2db.py](models2db.py)自行生成）
   - 建议查询方式
     - `SELECT * FROM models WHERE model LIKE ? COLLATE NOCASE`
     - 查询参数：`%<brand>%<model>%`，比如`%Huawei%NOP-AN00P%`
@@ -29,7 +29,7 @@
         Huawei Mate 40 RS Porsche Design 5G NOP-AN00P
         sqlite>
         ```
-- iOS：[model_to_color.json映射表](https://github.com/orcastor/phone_images/blob/master/model_to_color.json)
+- iOS：[model_to_color.json](model_to_color.json)映射表
   - 可以使用M开头的5位型号（`ModelNumber`）匹配到颜色
       - 参考资料一：[iPhone 15型号表](https://ek.ua/en/post/5188/122-how-not-to-make-a-mistake-iphone-article-numbers-and-their-decoding/)
       - 参考资料二：[iPhone型号表](https://github.com/pbakondy/ios-device-list/blob/b50e6818ae5d24c80bef0594a4c43da58f58ceb1/iphone.json)

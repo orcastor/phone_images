@@ -1,4 +1,4 @@
-package phone_images
+package sdk
 
 import (
 	"database/sql"
@@ -43,6 +43,8 @@ func GetIOSURL(ProductName, ModelNumber string) string {
 	return ""
 }
 
+// ro.product.brand
+// ro.product.model
 func GetAndroidProductName(Brand, Model string) string {
 	// 连接SQLite数据库
 	db, err := sql.Open("sqlite3", "android.db")

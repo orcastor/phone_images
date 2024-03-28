@@ -1,4 +1,4 @@
-module github.com/orcastor/phone_images
+module github.com/orcastor/phone_images/sdk
 
 go 1.19
 

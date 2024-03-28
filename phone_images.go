@@ -1,4 +1,4 @@
-package phoneimages
+package phone_images
 
 import (
 	"database/sql"

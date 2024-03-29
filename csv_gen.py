@@ -14,7 +14,6 @@ file_names_sorted = natsorted(file_names)
 # 写入 CSV 文件
 with open('./android/android', mode='w', newline='', encoding='utf-8') as file:
     writer = csv.writer(file)
-    writer.writerow(['File Name'])
     for file_name in file_names_sorted:
         writer.writerow([file_name.replace('.jpg', '')])
 

@@ -25,8 +25,8 @@
         SQLite version 3.45.2 2024-03-12 11:06:23 (UTF-16 console I/O)
         Enter ".help" for usage hints.
         sqlite> SELECT * FROM models WHERE model LIKE '%Huawei%NOP-AN00P%' COLLATE NOCASE;
-        Huawei Mate 40 RS Porsche Design 5G NOP-AN00P Black
-        Huawei Mate 40 RS Porsche Design 5G NOP-AN00P
+        Huawei Mate 40 RS Porsche Design NOP-AN00P Black
+        Huawei Mate 40 RS Porsche Design NOP-AN00P
         sqlite>
         ```
 - iOS：[model_to_color.json](model_to_color.json)映射表
@@ -58,9 +58,9 @@
 
 - Huawei Mate 40 RS
 
-  - 地址为：https://raw.githubusercontent.com/orcastor/phone_images/master/android/Huawei%20Mate%2040%20RS%20Porsche%20Design%205G%20NOP-AN00P.jpg
+  - 地址为：https://raw.githubusercontent.com/orcastor/phone_images/master/android/Huawei%20Mate%2040%20RS%20Porsche%20Design%20NOP-AN00P.jpg
 
-    <img src="https://raw.githubusercontent.com/orcastor/phone_images/master/android/Huawei%20Mate%2040%20RS%20Porsche%20Design%205G%20NOP-AN00P.jpg" width="30%">
+    <img src="https://raw.githubusercontent.com/orcastor/phone_images/master/android/Huawei%20Mate%2040%20RS%20Porsche%20Design%20NOP-AN00P.jpg" width="30%">
 
 - iPhone 15 Black
 

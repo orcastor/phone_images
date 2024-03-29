@@ -33,42 +33,42 @@ func GetIOSProductName(ProductType string) string {
 // ProductName示例：iPhone9,2
 // ModelNumber示例：M或者N开头的5位字符串，N为官换机
 func GetIOSURL(ProductName, ModelNumber string) string {
-	if len(ModelNumber) != 5 {
-		return ""
-	}
-	if ModelNumber[0] == 'N' {
+	if len(ModelNumber) == 5 && ModelNumber[0] == 'N' {
 		ModelNumber = "M" + ModelNumber[1:]
 	}
 	if color, ok := ModelNumber2Color[ModelNumber]; ok {
 		return strings.ReplaceAll(fmt.Sprintf("https://raw.githubusercontent.com/orcastor/phone_images/master/ios/%s %s.jpg", ProductName, color), " ", "%20")
 	}
-	return ""
+	return GetIOSURL("iPhone 15 Pro Max", "MU783")
 }
 
 // ro.product.brand
-// ro.product.model
-func GetAndroidProductName(Brand, Model string) string {
+// ro.product.name
+func GetAndroidProductName(Brand, Name string) string {
 	// 连接SQLite数据库
 	db, err := sql.Open("sqlite3", "android.db")
 	if err != nil {
-		fmt.Println(err)
-		return ""
+		return fmt.Sprintf("%s %s", Brand, Name)
 	}
 	defer db.Close()
 
 	// 查询数据
 	var ProductName string
-	err = db.QueryRow("SELECT model FROM models WHERE model LIKE ? COLLATE NOCASE ORDER BY LENGTH(model) DESC", fmt.Sprintf("%%%s%%%s%%", Brand, Model)).Scan(&ProductName)
+	err = db.QueryRow("SELECT model FROM models WHERE model LIKE ? COLLATE NOCASE ORDER BY LENGTH(model) DESC", fmt.Sprintf("%%%s%%%s%%", Brand, Name)).Scan(&ProductName)
 	if err != nil {
-		fmt.Println(err)
-		return ""
+		return fmt.Sprintf("%s %s", Brand, Name)
 	}
 
 	return ProductName
 }
 
 func GetAndroidURL(ProductName string) string {
-	return fmt.Sprintf("https://raw.githubusercontent.com/orcastor/phone_images/master/android/%s.jpg", strings.ReplaceAll(ProductName, " ", "%20"))
+	if ProductName == "" {
+		ProductName = "android"
+	} else {
+		ProductName = strings.ReplaceAll(ProductName, " ", "%20")
+	}
+	return fmt.Sprintf("https://raw.githubusercontent.com/orcastor/phone_images/master/android/%s.jpg", ProductName)
 }
 
 var iPhoneNames = map[string]string{

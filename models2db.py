@@ -38,13 +38,15 @@ def main():
     
     # 获取目录下的所有文件名（去除后缀）
     files = os.listdir(directory)
+
+    files = list(filter(lambda x: x != 'android' and x != 'android.jpg', files))
     
     # 获取机型信息（去除文件名的扩展名）
     models = [os.path.splitext(file)[0] for file in files]
     
     # 将机型信息存储到数据库中
     insert_models(db_file, models)
-    
+
     print("Models have been inserted into the database.")
 
 if __name__ == "__main__":

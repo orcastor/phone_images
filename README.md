@@ -19,7 +19,7 @@
   - 表名models，字段名model，有FTS5版全文检索索引（注意是否支持，如不支持可修改[models2db.py](models2db.py)自行生成）
   - 建议查询方式
     - `SELECT * FROM models WHERE model LIKE ? COLLATE NOCASE`
-    - 查询参数：`%<brand>%<model>%`，比如`%Huawei%NOP-AN00P%`
+    - 查询参数：`%<ro.product.brand>%<ro.product.name>%`，比如`%Huawei%NOP-AN00P%`
         ``` cmd
         PS F:\GitHub\phone_images> sqlite3.exe .\android.db
         SQLite version 3.45.2 2024-03-12 11:06:23 (UTF-16 console I/O)
@@ -47,6 +47,11 @@
       - Yellow：Yellow
       - Purple: Purple、Deep Purple
       - Orange：Coral
+
+#### Golang SDK
+
+- 提供`GetIOSProductName`,`GetIOSURL`,`GetAndroidProductName`,`GetAndroidURL`四个方法
+- 引入方式`import "github.com/orcastor/phone_images/sdk"`
 
 ### 构造地址
 

@@ -30,7 +30,7 @@
         sqlite>
         ```
 - iOS：[model_to_color.json](model_to_color.json)映射表
-  - 可以使用M或者N开头的5位型号（`ModelNumber`）匹配到颜色
+  - 可以使用M或者N、F、P开头的5位型号（`ModelNumber`）匹配到颜色
       - 参考资料一：[iPhone 15型号表](https://ek.ua/en/post/5188/122-how-not-to-make-a-mistake-iphone-article-numbers-and-their-decoding/)
       - 参考资料二：[iPhone 15以前型号表](https://github.com/pbakondy/ios-device-list/blob/b50e6818ae5d24c80bef0594a4c43da58f58ceb1/iphone.json)
       - 参考资料三：[苹果设备Model信息](https://www.theiphonewiki.com/wiki/Models)

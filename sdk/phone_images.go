@@ -32,12 +32,8 @@ func GetIOSProductName(ProductType string) string {
 
 // ProductName示例：iPhone9,2
 // ModelNumber示例：M或者N开头的5位字符串，N为官换机
-// M - new device;
-// F - officially refurbished smartphone by Apple (Refurbished);
-// N – a new smartphone, issued under Apple’s warranty to replace a broken one (such devices are extremely rarely sold in regular stores - they can be found on trading platforms as “used”);
-// P - personalized device with engraving;
 func GetIOSURL(ProductName, ModelNumber string) string {
-	if len(ModelNumber) == 5 && strings.ContainsRune("MFNP", ModelNumber[0]) {
+	if len(ModelNumber) == 5 && ModelNumber[0] == 'N' {
 		ModelNumber = "M" + ModelNumber[1:]
 	}
 	if color, ok := ModelNumber2Color[ModelNumber]; ok {
@@ -48,9 +44,9 @@ func GetIOSURL(ProductName, ModelNumber string) string {
 
 // ro.product.brand
 // ro.product.name
-func GetAndroidProductName(Brand, Name string) string {
+func GetAndroidProductName(Product, Brand, Name string) string {
 	// 连接SQLite数据库
-	db, err := sql.Open("sqlite3", "android.db")
+	db, err := sql.Open("sqlite3", "./android.db")
 	if err != nil {
 		return fmt.Sprintf("%s %s", Brand, Name)
 	}
@@ -58,12 +54,20 @@ func GetAndroidProductName(Brand, Name string) string {
 
 	// 查询数据
 	var ProductName string
-	err = db.QueryRow("SELECT model FROM models WHERE model LIKE ? COLLATE NOCASE ORDER BY LENGTH(model) DESC", fmt.Sprintf("%%%s%%%s%%", Brand, Name)).Scan(&ProductName)
-	if err != nil {
+	err = db.QueryRow("SELECT model FROM models WHERE model LIKE ? COLLATE NOCASE ORDER BY LENGTH(model) DESC", fmt.Sprintf("%%%s%%", Product)).Scan(&ProductName)
+	if err != nil && err != sql.ErrNoRows {
 		return fmt.Sprintf("%s %s", Brand, Name)
 	}
 
-	return ProductName
+	if ProductName != "" {
+		return ProductName
+	}
+	err = db.QueryRow("SELECT model FROM models WHERE model LIKE ? COLLATE NOCASE ORDER BY LENGTH(model) DESC", fmt.Sprintf("%%%s%%%s%%", Brand, Name)).Scan(&ProductName)
+	if err != nil && err != sql.ErrNoRows {
+		return fmt.Sprintf("%s %s", Brand, Name)
+	}
+
+	return "android"
 }
 
 func GetAndroidURL(ProductName string) string {

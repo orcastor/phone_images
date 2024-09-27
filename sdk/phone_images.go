@@ -30,9 +30,14 @@ func GetIOSProductName(ProductType string) string {
 	return ProductType
 }
 
-// ProductName示例：iPhone9,2
-// ModelNumber示例：M或者N开头的5位字符串，N为官换机
+// ProductName示例：iPhone9,2, iPad7,5, iPod9,1
+// ModelNumber示例：M或者N、F、P开头的5位字符串，N为官换机
 func GetIOSURL(ProductName, ModelNumber string) string {
+	if strings.HasPrefix(ProductName, "iPad") {
+		return "https://raw.githubusercontent.com/orcastor/phone_images/master/ios/iPad.jpg"
+	} else if strings.HasPrefix(ProductName, "iPod") {
+		return "https://raw.githubusercontent.com/orcastor/phone_images/master/ios/iPod.jpg"
+	}
 	if len(ModelNumber) == 5 && ModelNumber[0] == 'N' {
 		ModelNumber = "M" + ModelNumber[1:]
 	}
@@ -44,7 +49,17 @@ func GetIOSURL(ProductName, ModelNumber string) string {
 
 // ro.product.brand
 // ro.product.name
-func GetAndroidProductName(Product, Brand, Name string) string {
+func GetAndroidProductName(Names ...string) string {
+	Product, Brand, Name := "", "", ""
+	switch len(Names) {
+	case 1:
+		Product = Names[0]
+	case 2:
+		Brand, Name = Names[0], Names[1]
+	default:
+		Product, Brand, Name = Names[0], Names[1], Names[2]
+	}
+
 	// 连接SQLite数据库
 	db, err := sql.Open("sqlite3", "./android.db")
 	if err != nil {
@@ -54,17 +69,19 @@ func GetAndroidProductName(Product, Brand, Name string) string {
 
 	// 查询数据
 	var ProductName string
-	err = db.QueryRow("SELECT model FROM models WHERE model LIKE ? COLLATE NOCASE ORDER BY LENGTH(model) DESC", fmt.Sprintf("%%%s%%", Product)).Scan(&ProductName)
-	if err != nil && err != sql.ErrNoRows {
-		return fmt.Sprintf("%s %s", Brand, Name)
+	if Product != Name {
+		err = db.QueryRow("SELECT model FROM models WHERE model LIKE ? COLLATE NOCASE", fmt.Sprintf("%%%s%%%s%%", Product, Name)).Scan(&ProductName)
+		if err == nil {
+			return ProductName
+		}
 	}
-
-	if ProductName != "" {
+	err = db.QueryRow("SELECT model FROM models WHERE model LIKE ? COLLATE NOCASE", fmt.Sprintf("%%%s%%%s%%", Brand, Name)).Scan(&ProductName)
+	if err == nil {
 		return ProductName
 	}
-	err = db.QueryRow("SELECT model FROM models WHERE model LIKE ? COLLATE NOCASE ORDER BY LENGTH(model) DESC", fmt.Sprintf("%%%s%%%s%%", Brand, Name)).Scan(&ProductName)
-	if err != nil && err != sql.ErrNoRows {
-		return fmt.Sprintf("%s %s", Brand, Name)
+	err = db.QueryRow("SELECT model FROM models WHERE model LIKE ? COLLATE NOCASE", fmt.Sprintf("%%%s%%", Product)).Scan(&ProductName)
+	if err == nil {
+		return ProductName
 	}
 
 	return "android"

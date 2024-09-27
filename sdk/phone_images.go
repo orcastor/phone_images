@@ -52,6 +52,8 @@ func GetIOSURL(ProductName, ModelNumber string) string {
 func GetAndroidProductName(Names ...string) string {
 	Product, Brand, Name := "", "", ""
 	switch len(Names) {
+	case 0:
+		return ""
 	case 1:
 		Product = Names[0]
 	case 2:

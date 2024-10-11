@@ -10,6 +10,13 @@ import (
 
 // 需要用 go build --tags "fts5"
 
+var androidDB = "./android.db"
+
+// 设置Android数据库路径
+func SetAndroidDBPath(path string) {
+	androidDB = path
+}
+
 // https://github.com/lmirosevic/GBDeviceInfo/blob/master/GBDeviceInfo/GBDeviceInfo_iOS.m
 func GetIOSProductName(ProductType string) string {
 	if a, ok := strings.CutPrefix(ProductType, "iPhone"); ok {
@@ -47,8 +54,11 @@ func GetIOSURL(ProductName, ModelNumber string) string {
 	return GetIOSURL("iPhone 15 Pro Max", "MU783")
 }
 
-// ro.product.brand
-// ro.product.name
+// 支持可变参数
+// 0个参数返回默认值
+// 1个参数传入product_name
+// 2个参数传入ro.product.brand和ro.product.name
+// 3个参数传入product_name和ro.product.brand和ro.product.name
 func GetAndroidProductName(Names ...string) string {
 	Product, Brand, Name := "", "", ""
 	switch len(Names) {
@@ -63,7 +73,7 @@ func GetAndroidProductName(Names ...string) string {
 	}
 
 	// 连接SQLite数据库
-	db, err := sql.Open("sqlite3", "./android.db")
+	db, err := sql.Open("sqlite3", androidDB)
 	if err != nil {
 		return fmt.Sprintf("%s %s", Brand, Name)
 	}

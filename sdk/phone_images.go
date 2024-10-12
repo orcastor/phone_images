@@ -87,7 +87,15 @@ func GetAndroidProductName(Names ...string) string {
 			return ProductName
 		}
 	}
+	err = db.QueryRow("SELECT model FROM models WHERE model LIKE ? COLLATE NOCASE", fmt.Sprintf("%%%s%%%s", Brand, Name)).Scan(&ProductName)
+	if err == nil {
+		return ProductName
+	}
 	err = db.QueryRow("SELECT model FROM models WHERE model LIKE ? COLLATE NOCASE", fmt.Sprintf("%%%s%%%s%%", Brand, Name)).Scan(&ProductName)
+	if err == nil {
+		return ProductName
+	}
+	err = db.QueryRow("SELECT model FROM models WHERE model LIKE ? COLLATE NOCASE", fmt.Sprintf("%%%s", Product)).Scan(&ProductName)
 	if err == nil {
 		return ProductName
 	}

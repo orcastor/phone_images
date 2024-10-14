@@ -55,7 +55,8 @@
 
 ### 构造地址
 
-- 推荐CDN地址：https://raw.githubusercontent.com/orcastor/phone_images/master/[platform]/[name].jpg
+- 推荐CDN地址：https://cdn.jsdelivr.net/gh/orcastor/phone_images@master/[platform]/[name].jpg
+- ~~不推荐github地址: https://raw.githubusercontent.com/orcastor/phone_images/master/[platform]/[name].jpg~~
 - ~~不推荐跳转地址: https://github.com/orcastor/phone_images/blob/master/[platform]/[name].jpg?raw=true~~
 - **\* 空格需要替换为`%20`**
 

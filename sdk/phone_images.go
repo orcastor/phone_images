@@ -41,15 +41,15 @@ func GetIOSProductName(ProductType string) string {
 // ModelNumber示例：M或者N、F、P开头的5位字符串，N为官换机
 func GetIOSURL(ProductName, ModelNumber string) string {
 	if strings.HasPrefix(ProductName, "iPad") {
-		return "https://raw.githubusercontent.com/orcastor/phone_images/master/ios/iPad.jpg"
+		return "https://cdn.jsdelivr.net/gh/orcastor/phone_images@master/ios/iPad.jpg"
 	} else if strings.HasPrefix(ProductName, "iPod") {
-		return "https://raw.githubusercontent.com/orcastor/phone_images/master/ios/iPod.jpg"
+		return "https://cdn.jsdelivr.net/gh/orcastor/phone_images@master/ios/iPod.jpg"
 	}
 	if len(ModelNumber) == 5 && ModelNumber[0] == 'N' {
 		ModelNumber = "M" + ModelNumber[1:]
 	}
 	if color, ok := ModelNumber2Color[ModelNumber]; ok {
-		return strings.ReplaceAll(fmt.Sprintf("https://raw.githubusercontent.com/orcastor/phone_images/master/ios/%s %s.jpg", ProductName, color), " ", "%20")
+		return strings.ReplaceAll(fmt.Sprintf("https://cdn.jsdelivr.net/gh/orcastor/phone_images@master/ios/%s %s.jpg", ProductName, color), " ", "%20")
 	}
 	return GetIOSURL("iPhone 15 Pro Max", "MU783")
 }
@@ -113,7 +113,7 @@ func GetAndroidURL(ProductName string) string {
 	} else {
 		ProductName = strings.ReplaceAll(ProductName, " ", "%20")
 	}
-	return fmt.Sprintf("https://raw.githubusercontent.com/orcastor/phone_images/master/android/%s.jpg", ProductName)
+	return fmt.Sprintf("https://cdn.jsdelivr.net/gh/orcastor/phone_images@master/android/%s.jpg", ProductName)
 }
 
 var iPhoneNames = map[string]string{

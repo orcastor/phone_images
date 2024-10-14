@@ -64,12 +64,12 @@
 
 - Huawei Mate 40 RS
 
-  - 地址为：https://raw.githubusercontent.com/orcastor/phone_images/master/android/Huawei%20Mate%2040%20RS%20Porsche%20Design%20NOP-AN00P.jpg
+  - 地址为：https://cdn.jsdelivr.net/gh/orcastor/phone_images@master/android/Huawei%20Mate%2040%20RS%20Porsche%20Design%20NOP-AN00P.jpg
 
-    <img src="https://raw.githubusercontent.com/orcastor/phone_images/master/android/Huawei%20Mate%2040%20RS%20Porsche%20Design%20NOP-AN00P.jpg" width="30%">
+    <img src="https://cdn.jsdelivr.net/gh/orcastor/phone_images@master/android/Huawei%20Mate%2040%20RS%20Porsche%20Design%20NOP-AN00P.jpg" width="30%">
 
 - iPhone 15 Black
 
-  - 地址为：https://raw.githubusercontent.com/orcastor/phone_images/master/ios/iPhone%2015%20Black.jpg
+  - 地址为：https://cdn.jsdelivr.net/gh/orcastor/phone_images@master/ios/iPhone%2015%20Black.jpg
 
-    <img src="https://raw.githubusercontent.com/orcastor/phone_images/master/ios/iPhone%2015%20Black.jpg" width="30%">
+    <img src="https://cdn.jsdelivr.net/gh/orcastor/phone_images@master/ios/iPhone%2015%20Black.jpg" width="30%">

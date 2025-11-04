@@ -34,6 +34,7 @@
       - 参考资料一：[iPhone 15型号表](https://ek.ua/en/post/5188/122-how-not-to-make-a-mistake-iphone-article-numbers-and-their-decoding/)
       - 参考资料二：[iPhone 15以前型号表](https://github.com/pbakondy/ios-device-list/blob/b50e6818ae5d24c80bef0594a4c43da58f58ceb1/iphone.json)
       - 参考资料三：[苹果设备Model信息](https://www.theiphonewiki.com/wiki/Models)
+      - 参考资料四：[iPhone 16/17型号表](https://theapplewiki.com/wiki/Models/iPhone#cite_note-demo-1)
   - 规约到12种颜色
       - Black：Black、Midnight、Graphite、Jet Black、Matte Black、BlackSlate、Black Titanium
       - White：White、Starlight、WhiteSilver、White Titanium
